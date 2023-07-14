@@ -1,0 +1,42 @@
+[Unit]
+Description=Example Receiver Unit for habroker systemd integration
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/receiver %i
+WorkingDirectory=/opt/receiver
+User=daemon
+Group=daemon
+
+# If your system doesn't support all of the features below (e.g. because of
+# the use of an older version of systemd), you may wish to comment-out
+# some of the lines below as appropriate.
+CapabilityBoundingSet=
+LockPersonality=true
+MemoryDenyWriteExecute=true
+NoNewPrivileges=yes
+PrivateTmp=yes
+PrivateDevices=true
+PrivateUsers=true
+ProtectSystem=strict
+ProtectHome=yes
+ProtectClock=true
+ProtectControlGroups=true
+ProtectKernelLogs=true
+ProtectKernelModules=true
+ProtectKernelTunables=true
+ProtectProc=invisible
+ProtectHostname=true
+PrivateIPC=true
+RemoveIPC=true
+RestrictNamespaces=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictSUIDSGID=true
+RestrictRealtime=true
+# if your service crashes with "code=killed, status=31/SYS", you probably tried to run linux_i386 (32bit) binary on a amd64 host
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+
+[Install]
+WantedBy=multi-user.target
