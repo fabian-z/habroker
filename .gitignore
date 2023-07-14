@@ -8,6 +8,9 @@
 *.so
 *.dylib
 
+example/example
+cmd/habroker/habroker
+
 # Test binary, built with `go test -c`
 *.test
 
